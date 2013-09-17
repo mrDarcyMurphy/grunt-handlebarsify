@@ -1,4 +1,4 @@
-grunt-handlebars-requirejs
-==========================
+grunt-handlebarsify
+===================
 
-Compiles handlebars templates into requirejs modules.
+Because.
