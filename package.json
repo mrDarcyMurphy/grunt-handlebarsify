@@ -1,0 +1,43 @@
+{
+  "name": "grunt-handlebarsify",
+  "description": "Precompile Handlebars templates for use with browserify.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mrDarcyMurphy/grunt-handlebarsify",
+  "author": {
+    "name": "Darcy Murphy",
+    "url": "http://mrdarcymurphy.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mrDarcyMurphy/grunt-handlebarsify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrDarcyMurphy/grunt-handlebarsify/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mrDarcyMurphy/grunt-handlebarsify/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "handlebars": "~1.0.12",
+    "grunt-lib-contrib": "~0.3.0"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-clean": "0.4.x",
+    "grunt-contrib-jshint": "0.4.x",
+    "mocha": "~1.4.2",
+    "grunt-simple-mocha": "*"
+  },
+  "keywords": [
+    "gruntplugin", "handlebars", "requirejs"
+  ]
+}
