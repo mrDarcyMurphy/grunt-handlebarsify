@@ -39,9 +39,7 @@ module.exports = function(grunt) {
     handlebarsify: {
       basic: {
         files: {
-          // folder : files
-          // files will be converted into modules and dumped into the folder
-          'tmp/basic/': ['test/fixtures/basic.hbs']
+          'tmp/basic/basic.js': ['test/fixtures/basic.hb']
         }
       },
       partialed: {
@@ -49,10 +47,20 @@ module.exports = function(grunt) {
           makePartials: true
         },
         files: {
-          // folder : files
-          // files will be converted into modules and dumped into the folder
-          'tmp/partialed/': ['test/fixtures/basic.hbs']
+          'tmp/partialed/basic.js': ['test/fixtures/basic.hb']
         }
+      },
+      expanded: {
+        options: {
+          makePartials: true
+        },
+        files: [{
+          expand: true,
+          cwd:    'test/fixtures/',
+          src:    '**/*.hb',
+          dest:   'tmp/expanded/',
+          ext:    '.js'
+        }]
       }
     },
 

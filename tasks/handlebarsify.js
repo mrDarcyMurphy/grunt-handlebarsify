@@ -67,10 +67,8 @@ module.exports = function(grunt) {
         }
         output += "module.exports = template\n"
 
-        // TODO: could maybe test for a trailing slash on the files.dest here
-        outputFilename = files.dest + filename + '.js'
-        grunt.file.write(outputFilename, output);
-        grunt.log.writeln('File "' + outputFilename + '" created.');
+        grunt.file.write(files.dest, output);
+        grunt.log.writeln('File "' + files.dest + '" created.');
 
       });
     });
