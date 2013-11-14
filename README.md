@@ -28,6 +28,12 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 ### Options
 
+#### makePartials
+Type: `Boolean`
+Default: `false`
+
+Determines whether or not each template is registered as a partial.
+
 #### wrapped
 Type: `Boolean`
 Default: `true`
