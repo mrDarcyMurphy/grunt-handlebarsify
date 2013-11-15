@@ -44,10 +44,14 @@ module.exports = function(grunt) {
     // assign compiler options
     var compilerOptions = options.compilerOptions || {}
 
+    var filecount = 0
+
     // iterate files, processing partials and templates separately
     this.files.forEach(function(files) {
       srcFiles = grunt.file.expand(files.src)
       srcFiles.forEach(function(file) {
+        filecount++
+
         src = grunt.file.read(file)
 
         try {
@@ -70,9 +74,10 @@ module.exports = function(grunt) {
         output += "module.exports = template\n"
 
         grunt.file.write(files.dest, output)
-        grunt.log.writeln('File "' + files.dest + '" created.');
+        grunt.verbose.writeln('File "' + file.cyan + '" created.')
 
       })
     })
+    grunt.log.writeln('>> '.green + filecount + ' templates processed.')
   })
 }
