@@ -1,7 +1,7 @@
 {
   "name": "grunt-handlebarsify",
   "description": "Precompile Handlebars templates for use with browserify.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/mrDarcyMurphy/grunt-handlebarsify",
   "author": {
     "name": "Darcy Murphy",
@@ -38,6 +38,8 @@
     "grunt-simple-mocha": "*"
   },
   "keywords": [
-    "gruntplugin", "handlebars", "requirejs"
+    "gruntplugin",
+    "handlebars",
+    "requirejs"
   ]
 }
