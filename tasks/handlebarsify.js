@@ -30,9 +30,9 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('handlebarsify', 'Compile Handlebars templates to browserify-able modules.', function() {
 
-    var options = helpers.options(this);
+    var options = helpers.options(this)
 
-    grunt.verbose.writeflags(options, 'Options');
+    grunt.verbose.writeflags(options, 'Options')
 
     var compiled, srcFiles, src, filename, outputFilename, partialName
     var output = ""
@@ -41,25 +41,31 @@ module.exports = function(grunt) {
     var processName = options.processName || defaultProcessName
     var processPartialName = options.processPartialName || defaultProcessPartialName
 
+    // assign compiler options
+    var compilerOptions = options.compilerOptions || {}
+
+    var filecount = 0
+
     // iterate files, processing partials and templates separately
     this.files.forEach(function(files) {
-      srcFiles = grunt.file.expand(files.src);
+      srcFiles = grunt.file.expand(files.src)
       srcFiles.forEach(function(file) {
-        src = grunt.file.read(file);
+        filecount++
+
+        src = grunt.file.read(file)
 
         try {
-          compiled = require('handlebars').precompile(src);
-          compiled = 'Handlebars.template('+compiled+')'; // Forcing wrap since we'll need it in the module
+          compiled = require('handlebars').precompile(src, compilerOptions)
+          if (options.wrapped !== false) // wrapped by default
+            compiled = 'Handlebars.template('+compiled+')'
         } catch (e) {
           grunt.log.error(e);
-          grunt.fail.warn('Handlebars failed to compile '+file+'.');
+          grunt.fail.warn('Handlebars failed to compile '+file+'.')
         }
 
-        filename = processName(file);
+        filename = processName(file)
 
-        output  = ""
-        output += "var glob = ('undefined' === typeof window) ? global : window;\n"
-        output += "Handlebars = glob.Handlebars || require('handlebars');\n"
+        output  = "var Handlebars = global.Handlebars || require('handlebars');\n"
         output += "var template = " + compiled + "\n"
         if (options.makePartials) {
           partialName = filename.replace(/\//g,'.')
@@ -67,10 +73,11 @@ module.exports = function(grunt) {
         }
         output += "module.exports = template\n"
 
-        grunt.file.write(files.dest, output);
-        grunt.log.writeln('File "' + files.dest + '" created.');
+        grunt.file.write(files.dest, output)
+        grunt.verbose.writeln('File "' + file.cyan + '" created.')
 
-      });
-    });
-  });
+      })
+    })
+    grunt.log.writeln('>> '.green + filecount + ' templates processed.')
+  })
 }
