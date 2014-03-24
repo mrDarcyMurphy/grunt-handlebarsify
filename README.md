@@ -1,5 +1,4 @@
-grunt-handlebarsify
-===================
+# grunt-handlebarsify [![Build Status](https://magnum-ci.com/status/563589dd406d37deee25ddf60335401f.png)](https://magnum-ci.com/public/1fdb674e1b34d4ea8975/builds)
 
 > Precompile handlebars templates for Node.js and Browserify.
 
