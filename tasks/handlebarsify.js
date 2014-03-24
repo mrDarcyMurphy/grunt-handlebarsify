@@ -1,10 +1,12 @@
 /*
- * grunt-handlebars-requirejs
+ * grunt-handlebarsify
  *
- * Copyright (c) 2012 Darcy Murphy
+ * Copyright (c) 2013 Darcy Murphy
  * Licensed under the MIT license.
  * https://github.com/mrDarcyMurphy/grunt-handlebars-requirejs/blob/master/LICENSE
  */
+
+var chalk = require('chalk')
 
 module.exports = function(grunt) {
   'use strict';
@@ -74,10 +76,9 @@ module.exports = function(grunt) {
         output += "module.exports = template\n"
 
         grunt.file.write(files.dest, output)
-        grunt.verbose.writeln('File "' + file.cyan + '" created.')
-
+        grunt.verbose.writeln('File "' + chalk.cyan(file) + '" created.')
       })
     })
-    grunt.log.writeln('>> '.green + filecount + ' templates processed.')
+    grunt.log.writeln( chalk.green('>> ') + filecount + ' templates processed.' )
   })
 }
