@@ -61,6 +61,15 @@ module.exports = function(grunt) {
           dest:   'tmp/expanded/',
           ext:    '.js'
         }]
+      },
+      assumedGlobal: {
+        options: {
+          makePartials: true,
+          globalfallback: false
+        },
+        files: {
+          'tmp/partialed/basic2.js': ['test/fixtures/basic.hb']
+        }
       }
     },
 

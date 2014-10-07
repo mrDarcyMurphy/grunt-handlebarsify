@@ -34,6 +34,8 @@ module.exports = function(grunt) {
 
     var options = helpers.options(this)
 
+    var globalfallback = (typeof options.globalfallback === "boolean") ? options.globalfallback : true
+
     grunt.verbose.writeflags(options, 'Options')
 
     var compiled, srcFiles, src, filename, outputFilename, partialName
@@ -67,7 +69,8 @@ module.exports = function(grunt) {
 
         filename = processName(file)
 
-        output  = "var Handlebars = global.Handlebars || require('handlebars');\n"
+        output  = "var Handlebars = global.Handlebars "
+        output += (globalfallback) ? "|| require('handlebars');\n" : "\n"
         output += "var template = " + compiled + "\n"
         if (options.makePartials) {
           partialName = filename.replace(/\//g,'.')
